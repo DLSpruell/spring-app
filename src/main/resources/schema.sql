@@ -1,3 +1,8 @@
+--drop table clients;
+--drop table pets;
+--drop table appointment;
+
+--drop table clients;
 create table clients (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(255),
@@ -11,10 +16,19 @@ create table pets (
 	gender varchar(255),
 	altered boolean,
 	client_id integer,
-	FOREIGN KEY (client_id) REFERENCES clients(id)
-
+	FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
 );
 
+CREATE TABLE appointments(
+	id integer PRIMARY KEY AUTOINCREMENT,
+	client_id integer,
+	pet_id integer, 
+	appt_type varchar(25),
+	appt_date varchar(25),
+	appt_time varchar(25),
+	FOREIGN KEY (client_id) REFERENCES clients(id)
+	FOREIGN KEY (pet_id) REFERENCES pet(id)
+);
 
 create table users (
 	id integer PRIMARY KEY AUTOINCREMENT,
